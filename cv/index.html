@@ -336,19 +336,19 @@
         function openSocialApp(e, webUrl, appUrl) {
             e.preventDefault();
             
-            // Detectar si es dispositivo móvil
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
                 // Intentar abrir la app
                 window.location.href = appUrl;
-                
-                // Si después de un segundo no se abrió la app, abrir en el navegador
+
                 setTimeout(() => {
-                    window.location.href = webUrl;
+                    // Verificar si realmente se abrió la app
+                    if (document.visibilityState === 'visible') {
+                        window.location.href = webUrl;
+                    }
                 }, 1000);
             } else {
-                // En desktop, abrir en nueva pestaña
                 window.open(webUrl, '_blank');
             }
         }
@@ -408,7 +408,9 @@
 
         <section class="section">
             <h2><i class="fas fa-bullseye"></i> OBJETIVO</h2>
-            <p>Estudiante de Ingeniería de Software con enfoque en Inteligencia Artificial, buscando oportunidades para aplicar y desarrollar habilidades técnicas en un entorno desafiante y colaborativo.</p>
+            <p>Apasionado por la Ingeniería de Software con un enfoque en Inteligencia Artificial, busco contribuir en proyectos que integren innovación 
+                tecnológica y análisis de datos para resolver problemas complejos. Mi meta es aplicar mis conocimientos en desarrollo de software, automatización 
+                y optimización de procesos en un entorno dinámico, mientras continuo expandiendo mis habilidades técnicas y estratégicas.</p>
         </section>
 
         <section class="section">
